@@ -1,0 +1,17 @@
+{
+    "image1": {
+        "data": "hwQGAAYAAAAAqgAAoKoKAKqqqgCqqqoAoKoKAACqAAA=",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "player"
+    },
+    "": {
+        "data": "hwQQABAAAAC7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7uw==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "sand_tile"
+    },
+    "*": {
+        "mimeType": "image/x-mkcd-f4",
+        "dataEncoding": "base64",
+        "namespace": "myImages"
+    }
+}
