@@ -30,6 +30,25 @@ b b b b b b b b b b b b b b b b
 b b b b b b b b b b b b b b b b 
 b b b b b b b b b b b b b b b b 
 `;
+            case "image2":
+            case "myImage":return img`
+. . . . e . . . . . e . . . . . 
+. . . e e e . . . e e e . . . . 
+. . . e e e e e e e e e . . . . 
+. . . e e d 8 e 8 d e e . . . . 
+. . . . e e e e e e e . . . . . 
+. . . . e e e f e e e . . . . . 
+. . . . . e e e e e . . . . . . 
+. . . . e 8 e e e 8 e . . . . . 
+. . . e e 8 8 8 8 8 e e . . . . 
+. . . e e 8 8 8 8 8 e e . . . . 
+. . . e e 6 6 6 6 6 e e . . . . 
+. . . . e 6 6 6 6 6 e . . . . . 
+. . . . . 6 6 6 6 6 . . . . . . 
+. . . . . e e . e e . . . . . . 
+. . . . . e e . e e . . . . . . 
+. . . . . e e . e e . . . . . . 
+`;
         }
         return null;
     })
