@@ -34,8 +34,13 @@ function setup () {
 }
 function guest (g: Sprite) {
     if (!(sprites.readDataBoolean(g, "moving"))) {
-        g.setVelocity(5, 5)
-        sprites.setDataBoolean(g, "moving", true)
+        direction = randint(-1, 1)
+        vx = randint(2, 6) * direction
+        vy = randint(2, 6) * direction
+        g.setVelocity(vx, vy)
+        sprites.setDataNumber(g, "moving", randint(400, 500))
+    } else {
+        sprites.changeDataNumberBy(g, "moving", -1)
     }
 }
 function movePlayer () {
@@ -43,10 +48,13 @@ function movePlayer () {
 }
 function spawnNewGuest () {
     new_guest = sprites.create(assets.image`myImage`, SpriteKind.Guest)
-    sprites.setDataBoolean(new_guest, "moving", false)
+    sprites.setDataNumber(new_guest, "moving", 0)
     guests.push(new_guest)
 }
 let new_guest: Sprite = null
+let vy = 0
+let vx = 0
+let direction = 0
 let gameIsSetup = 0
 let s_player: Sprite = null
 let guests: Sprite[] = []
