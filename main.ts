@@ -6,14 +6,7 @@ namespace SpriteKind {
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     spawnNewGuest()
 })
-function helpers2 () {
-    TRUE = 1
-    FALSE = 0
-}
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    spawnNewCar()
-})
-function setupStatics () {
+function setupUI () {
     ui_money = ui.add(
     img`
         . . b b b b . . 
@@ -29,8 +22,20 @@ function setupStatics () {
     ui.Corner.TopLeft
     )
 }
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    spawnNewCar()
+    checkTilemapLocations()
+})
+function checkTilemapLocations () {
+    if (tiles.isKindOnTile(SpriteKind.Player, tilelocation_entranceBooth)) {
+    	
+    }
+}
 function setupTilemap () {
     tiles.setCurrentTilemap(tilemap`level1`)
+}
+function setupMapLocations () {
+    tilelocation_entranceBooth = tiles.createTilePoint(12, 2)
 }
 function setupPlayer () {
     s_player = sprites.create(img`
@@ -154,8 +159,9 @@ behaviors.onEnter(SpriteKind.Guest, "new", function (sprite) {
     behaviors.setState(sprite, "moving")
 })
 function setup () {
-    setupStatics()
+    setupUI()
     setupTilemap()
+    setupMapLocations()
     setupEntranceBooth()
     setupPlayer()
     gameIsSetup = TRUE
@@ -174,7 +180,11 @@ function movePlayer () {
     scene.cameraFollowSprite(s_player)
 }
 function setupEntranceBooth () {
-	
+    tiles.setTileHighlight(tilelocation_entranceBooth, SpriteKind.Player, assets.tile`payment_hut_highlight`)
+}
+function helpers2 () {
+    TRUE = 1
+    FALSE = 0
 }
 behaviors.onEnter(SpriteKind.Car, "new", function (sprite) {
     sprites.setDataNumber(sprite, "guests", randint(1, 5))
@@ -360,14 +370,15 @@ function spawnNewCar () {
 }
 let new_car: Sprite = null
 let new_guest: Sprite = null
+let FALSE = 0
+let TRUE = 0
 let gameIsSetup = 0
 let vy = 0
 let vx = 0
 let direction = 0
 let s_player: Sprite = null
+let tilelocation_entranceBooth: tiles.TilePoint = null
 let ui_money = ""
-let FALSE = 0
-let TRUE = 0
 helpers2()
 setup()
 forever(function () {
