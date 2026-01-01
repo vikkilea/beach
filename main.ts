@@ -14,10 +14,10 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     spawnNewCar()
 })
 function setupStatics () {
-    TILEMAP = tilemap`level1`
+	
 }
 function setupTilemap () {
-    tiles.setCurrentTilemap(TILEMAP)
+    tiles.setCurrentTilemap(tilemap`level1`)
 }
 function setupPlayer () {
     s_player = sprites.create(img`
@@ -161,9 +161,9 @@ function movePlayer () {
 }
 behaviors.onEnter(SpriteKind.Car, "new", function (sprite) {
     sprites.setDataNumber(sprite, "guests", randint(1, 5))
+    sprites.setDataNumber(sprite, "money", randint(50, 100))
 })
 function spawnNewGuest () {
-    let guests: Sprite[] = []
     new_guest = sprites.create(assets.image`guest`, SpriteKind.Guest)
     character.setCharacterImages(
     new_guest,
@@ -260,10 +260,8 @@ function spawnNewGuest () {
     )
     behaviors.setState(new_guest, "new")
     sprites.setDataNumber(new_guest, "moving", 0)
-    guests.push(new_guest)
 }
 function spawnNewCar () {
-    let cars: Sprite[] = []
     new_car = sprites.create(assets.image`car`, SpriteKind.Car)
     tiles.teleportToTile(new_car, 11, 0)
     character.setCharacterImages(
@@ -343,7 +341,6 @@ function spawnNewCar () {
         `
     )
     behaviors.setState(new_car, "new")
-    cars.push(new_car)
 }
 let new_car: Sprite = null
 let new_guest: Sprite = null
@@ -352,7 +349,6 @@ let vy = 0
 let vx = 0
 let direction = 0
 let s_player: Sprite = null
-let TILEMAP: tiles.TileMapData = null
 let FALSE = 0
 let TRUE = 0
 helpers2()
