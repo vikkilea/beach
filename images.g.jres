@@ -12,7 +12,12 @@
     "image2": {
         "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADg7gAA7g4AAO7u7uDu7gAA4N7ujohm5u4Aju7uiGbm7gDu/u6IZgYAAI7u7ohm5u7g3u6OiGbm7u7u7uDu7gAA4O4AAO4OAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
         "mimeType": "image/x-mkcd-f4",
-        "displayName": "myImage"
+        "displayName": "guest"
+    },
+    "image3": {
+        "data": "hwQMABAAAAAAAAAAAAAAAAAA8P8A8P8AAABmZghmZgYAZZloZmiZBACWmWhmlpkGAJaZaGaWmQYAlploZpaZBgCWmWhmlpkGAGWZaGZomQQAAGZmCGZmBgAA8P8A8P8AAAAAAAAAAAA=",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "car"
     },
     "*": {
         "mimeType": "image/x-mkcd-f4",

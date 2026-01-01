@@ -45,9 +45,10 @@ function guest (g: Sprite) {
 }
 function movePlayer () {
     controller.moveSprite(s_player)
+    scene.cameraFollowSprite(s_player)
 }
 function spawnNewGuest () {
-    new_guest = sprites.create(assets.image`myImage`, SpriteKind.Guest)
+    new_guest = sprites.create(assets.image`guest`, SpriteKind.Guest)
     sprites.setDataNumber(new_guest, "moving", 0)
     guests.push(new_guest)
 }
@@ -64,12 +65,11 @@ let TRUE = 0
 helpers2()
 setup()
 forever(function () {
-    guestManager()
-    updateGuests()
-})
-forever(function () {
     if (gameIsSetup == TRUE) {
         movePlayer()
-        scene.cameraFollowSprite(s_player)
     }
+})
+forever(function () {
+    guestManager()
+    updateGuests()
 })

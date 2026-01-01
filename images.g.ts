@@ -31,7 +31,7 @@ b b b b b b b b b b b b b b b b
 b b b b b b b b b b b b b b b b 
 `;
             case "image2":
-            case "myImage":return img`
+            case "guest":return img`
 . . . . e . . . . . e . . . . . 
 . . . e e e . . . e e e . . . . 
 . . . e e e e e e e e e . . . . 
@@ -48,6 +48,25 @@ b b b b b b b b b b b b b b b b
 . . . . . e e . e e . . . . . . 
 . . . . . e e . e e . . . . . . 
 . . . . . e e . e e . . . . . . 
+`;
+            case "image3":
+            case "car":return img`
+. . . . . . . . . . . . 
+. . . . . . . . . . . . 
+. . . 5 6 6 6 6 5 . . . 
+. . . 6 9 9 9 9 6 . . . 
+. . 6 9 9 9 9 9 9 6 . . 
+. f 6 9 9 9 9 9 9 6 f . 
+. f 6 8 8 8 8 8 8 6 f . 
+. f 6 6 6 6 6 6 6 6 f . 
+. . 8 6 6 6 6 6 6 8 . . 
+. . . 6 6 6 6 6 6 . . . 
+. . 6 8 6 6 6 6 8 6 . . 
+. f 6 6 9 9 9 9 6 6 f . 
+. f 6 9 9 9 9 9 9 6 f . 
+. f 6 9 9 9 9 9 9 6 f . 
+. . 6 4 6 6 6 6 4 6 . . 
+. . . . . . . . . . . . 
 `;
         }
         return null;
