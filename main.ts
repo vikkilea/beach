@@ -14,7 +14,20 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     spawnNewCar()
 })
 function setupStatics () {
-	
+    ui_money = ui.add(
+    img`
+        . . b b b b . . 
+        . b 5 5 5 5 b . 
+        b 5 d 3 3 d 5 b 
+        b 5 3 5 5 1 5 b 
+        c 5 3 5 5 1 d c 
+        c d d 1 1 d d c 
+        . f d d d d f . 
+        . . f f f f . . 
+        `,
+    "100",
+    ui.Corner.TopLeft
+    )
 }
 function setupTilemap () {
     tiles.setCurrentTilemap(tilemap`level1`)
@@ -349,6 +362,7 @@ let vy = 0
 let vx = 0
 let direction = 0
 let s_player: Sprite = null
+let ui_money = ""
 let FALSE = 0
 let TRUE = 0
 helpers2()
