@@ -25,7 +25,7 @@ function setupStatics () {
         . f d d d d f . 
         . . f f f f . . 
         `,
-    "100",
+    "0",
     ui.Corner.TopLeft
     )
 }
