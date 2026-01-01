@@ -174,12 +174,7 @@ function movePlayer () {
     scene.cameraFollowSprite(s_player)
 }
 function setupEntranceBooth () {
-    tiles.setTileHighlight(
-    12,
-    2,
-    SpriteKind.Player,
-    assets.tile`payment_hut_highlight`
-    )
+	
 }
 behaviors.onEnter(SpriteKind.Car, "new", function (sprite) {
     sprites.setDataNumber(sprite, "guests", randint(1, 5))
