@@ -28,14 +28,15 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 function checkTilemapLocations () {
     if (tiles.isKindOnTile(SpriteKind.Player, tilelocation_entranceBooth)) {
-    	
+        model_entranceFee = game.askForNumber("What should the carpark cost?", 2)
+        tiles.teleportToTile(s_player, tiles.getTileLocation(13, 2))
     }
 }
 function setupTilemap () {
     tiles.setCurrentTilemap(tilemap`level1`)
 }
 function setupMapLocations () {
-    tilelocation_entranceBooth = tiles.createTilePoint(12, 2)
+    tilelocation_entranceBooth = tiles.getTileLocation(12, 2)
 }
 function setupPlayer () {
     s_player = sprites.create(img`
@@ -164,6 +165,7 @@ function setup () {
     setupMapLocations()
     setupEntranceBooth()
     setupPlayer()
+    setupModel()
     gameIsSetup = TRUE
 }
 behaviors.onEnter(SpriteKind.Guest, "moving", function (sprite) {
@@ -181,6 +183,9 @@ function movePlayer () {
 }
 function setupEntranceBooth () {
     tiles.setTileHighlight(tilelocation_entranceBooth, SpriteKind.Player, assets.tile`payment_hut_highlight`)
+}
+function setupModel () {
+    model_entranceFee = 10
 }
 function helpers2 () {
     TRUE = 1
@@ -377,7 +382,8 @@ let vy = 0
 let vx = 0
 let direction = 0
 let s_player: Sprite = null
-let tilelocation_entranceBooth: tiles.TilePoint = null
+let model_entranceFee = 0
+let tilelocation_entranceBooth: tiles.Location = null
 let ui_money = ""
 helpers2()
 setup()
