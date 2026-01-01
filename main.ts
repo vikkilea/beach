@@ -22,16 +22,16 @@ function setupUI () {
     ui.Corner.TopLeft
     )
 }
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    spawnNewCar()
-    checkTilemapLocations()
-})
 function checkTilemapLocations () {
     if (tiles.isKindOnTile(SpriteKind.Player, tilelocation_entranceBooth)) {
         model_entranceFee = game.askForNumber("What should the carpark cost?", 2)
         tiles.teleportToTile(s_player, tiles.getTileLocation(13, 2))
+        game.showLongText("Carpark fee set to " + model_entranceFee, DialogLayout.Bottom)
     }
 }
+controller.A.onEvent(ControllerButtonEvent.Released, function () {
+    checkTilemapLocations()
+})
 function setupTilemap () {
     tiles.setCurrentTilemap(tilemap`level1`)
 }
@@ -151,6 +151,8 @@ function setupPlayer () {
         . . . . . . . . . f f f . . . . 
         `
     )
+    controller.moveSprite(s_player)
+    scene.cameraFollowSprite(s_player)
 }
 behaviors.onEnter(SpriteKind.Guest, "new", function (sprite) {
     direction = randint(-1, 1)
@@ -166,7 +168,6 @@ function setup () {
     setupEntranceBooth()
     setupPlayer()
     setupModel()
-    gameIsSetup = TRUE
 }
 behaviors.onEnter(SpriteKind.Guest, "moving", function (sprite) {
     sprites.setDataNumber(sprite, "moving", randint(400, 500))
@@ -177,10 +178,6 @@ behaviors.onUpdate(SpriteKind.Guest, "moving", function (sprite) {
         behaviors.setState(sprite, "idle")
     }
 })
-function movePlayer () {
-    controller.moveSprite(s_player)
-    scene.cameraFollowSprite(s_player)
-}
 function setupEntranceBooth () {
     tiles.setTileHighlight(tilelocation_entranceBooth, SpriteKind.Player, assets.tile`payment_hut_highlight`)
 }
@@ -377,7 +374,6 @@ let new_car: Sprite = null
 let new_guest: Sprite = null
 let FALSE = 0
 let TRUE = 0
-let gameIsSetup = 0
 let vy = 0
 let vx = 0
 let direction = 0
@@ -387,8 +383,3 @@ let tilelocation_entranceBooth: tiles.Location = null
 let ui_money = ""
 helpers2()
 setup()
-forever(function () {
-    if (gameIsSetup == TRUE) {
-        movePlayer()
-    }
-})
