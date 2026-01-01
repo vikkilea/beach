@@ -31,6 +31,12 @@ function setupStatics () {
 }
 function setupTilemap () {
     tiles.setCurrentTilemap(tilemap`level1`)
+    tiles.setTileHighlight(
+    11,
+    3,
+    SpriteKind.Player,
+    assets.image`car`
+    )
 }
 function setupPlayer () {
     s_player = sprites.create(img`
