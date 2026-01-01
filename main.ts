@@ -280,9 +280,8 @@ function spawnNewGuest () {
 }
 function spawnNewCar () {
     new_car = sprites.create(assets.image`car`, SpriteKind.Car)
-    tiles.teleportToTile(new_car, 11, 0)
     character.setCharacterImages(
-    new_car,
+    null,
     assets.image`car`,
     img`
         . . . . . . . . . . . . . . . . 
