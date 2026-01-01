@@ -6,9 +6,6 @@ namespace SpriteKind {
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     spawnNewGuest()
 })
-function car (c: Sprite) {
-	
-}
 function helpers2 () {
     TRUE = 1
     FALSE = 0
@@ -18,11 +15,6 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 function setupStatics () {
     TILEMAP = tilemap`level1`
-}
-function updateGuests () {
-    for (let internal_g of guests) {
-        guest(internal_g)
-    }
 }
 function setupTilemap () {
     tiles.setCurrentTilemap(TILEMAP)
@@ -43,11 +35,6 @@ function setup () {
     setupPlayer()
     gameIsSetup = TRUE
 }
-function updateCars () {
-    for (let internal_c of cars) {
-        car(internal_c)
-    }
-}
 behaviors.onEnter(SpriteKind.Guest, "moving", function (sprite) {
     sprites.setDataNumber(sprite, "moving", randint(400, 500))
 })
@@ -57,9 +44,6 @@ behaviors.onUpdate(SpriteKind.Guest, "moving", function (sprite) {
         behaviors.setState(sprite, "idle")
     }
 })
-function guest (g: Sprite) {
-	
-}
 function movePlayer () {
     controller.moveSprite(s_player)
     scene.cameraFollowSprite(s_player)
@@ -68,25 +52,25 @@ behaviors.onEnter(SpriteKind.Car, "new", function (sprite) {
 	
 })
 function spawnNewGuest () {
+    let guests: Sprite[] = []
     new_guest = sprites.create(assets.image`guest`, SpriteKind.Guest)
     behaviors.setState(new_guest, "new")
     sprites.setDataNumber(new_guest, "moving", 0)
     guests.push(new_guest)
 }
 function spawnNewCar () {
+    let cars: Sprite[] = []
     new_car = sprites.create(assets.image`car`, SpriteKind.Car)
     behaviors.setState(new_car, "new")
     cars.push(new_car)
 }
 let new_car: Sprite = null
 let new_guest: Sprite = null
-let cars: Sprite[] = []
 let gameIsSetup = 0
 let vy = 0
 let vx = 0
 let direction = 0
 let s_player: Sprite = null
-let guests: Sprite[] = []
 let TILEMAP: tiles.TileMapData = null
 let FALSE = 0
 let TRUE = 0
@@ -96,10 +80,4 @@ forever(function () {
     if (gameIsSetup == TRUE) {
         movePlayer()
     }
-})
-forever(function () {
-    updateGuests()
-})
-forever(function () {
-    updateCars()
 })
