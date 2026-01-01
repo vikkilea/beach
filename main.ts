@@ -3,6 +3,11 @@ namespace SpriteKind {
     export const Guest = SpriteKind.create()
     export const Car = SpriteKind.create()
 }
+function entranceBoothClicked () {
+    model_entranceFee = game.askForNumber("What should the carpark cost?", 2)
+    tiles.teleportToTile(s_player, tiles.getTileLocation(13, 2))
+    game.showLongText("Carpark fee set to " + model_entranceFee, DialogLayout.Bottom)
+}
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     spawnNewGuest()
 })
@@ -24,9 +29,7 @@ function setupUI () {
 }
 function checkTilemapLocations () {
     if (tiles.isKindOnTile(SpriteKind.Player, tilelocation_entranceBooth)) {
-        model_entranceFee = game.askForNumber("What should the carpark cost?", 2)
-        tiles.teleportToTile(s_player, tiles.getTileLocation(13, 2))
-        game.showLongText("Carpark fee set to " + model_entranceFee, DialogLayout.Bottom)
+        entranceBoothClicked()
     }
 }
 controller.A.onEvent(ControllerButtonEvent.Released, function () {
@@ -37,6 +40,7 @@ function setupTilemap () {
 }
 function setupMapLocations () {
     tilelocation_entranceBooth = tiles.getTileLocation(12, 2)
+    tilelocations_carspawnpoint = tiles.getTileLocation(11, 0)
 }
 function setupPlayer () {
     s_player = sprites.create(img`
@@ -191,6 +195,8 @@ function helpers2 () {
 behaviors.onEnter(SpriteKind.Car, "new", function (sprite) {
     sprites.setDataNumber(sprite, "guests", randint(1, 5))
     sprites.setDataNumber(sprite, "money", randint(50, 100))
+    tiles.teleportToTile(sprite, tilelocations_carspawnpoint)
+    tiles.moveSpriteToTile(sprite, tiles.getTileLocation(11, 2), 4)
 })
 function spawnNewGuest () {
     new_guest = sprites.create(assets.image`guest`, SpriteKind.Guest)
@@ -288,12 +294,11 @@ function spawnNewGuest () {
         `
     )
     behaviors.setState(new_guest, "new")
-    sprites.setDataNumber(new_guest, "moving", 0)
 }
 function spawnNewCar () {
     new_car = sprites.create(assets.image`car`, SpriteKind.Car)
     character.setCharacterImages(
-    null,
+    new_car,
     assets.image`car`,
     img`
         . . . . . . . . . . . . . . . . 
@@ -377,9 +382,15 @@ let TRUE = 0
 let vy = 0
 let vx = 0
 let direction = 0
-let s_player: Sprite = null
-let model_entranceFee = 0
+let tilelocations_carspawnpoint: tiles.Location = null
 let tilelocation_entranceBooth: tiles.Location = null
 let ui_money = ""
+let s_player: Sprite = null
+let model_entranceFee = 0
 helpers2()
 setup()
+forever(function () {
+    timer.throttle("spawnCar", 30000, function () {
+        spawnNewCar()
+    })
+})
