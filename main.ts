@@ -31,12 +31,6 @@ function setupStatics () {
 }
 function setupTilemap () {
     tiles.setCurrentTilemap(tilemap`level1`)
-    tiles.setTileHighlight(
-    11,
-    3,
-    SpriteKind.Player,
-    assets.image`car`
-    )
 }
 function setupPlayer () {
     s_player = sprites.create(img`
@@ -162,6 +156,7 @@ behaviors.onEnter(SpriteKind.Guest, "new", function (sprite) {
 function setup () {
     setupStatics()
     setupTilemap()
+    setupEntranceBooth()
     setupPlayer()
     gameIsSetup = TRUE
 }
@@ -177,6 +172,14 @@ behaviors.onUpdate(SpriteKind.Guest, "moving", function (sprite) {
 function movePlayer () {
     controller.moveSprite(s_player)
     scene.cameraFollowSprite(s_player)
+}
+function setupEntranceBooth () {
+    tiles.setTileHighlight(
+    12,
+    2,
+    SpriteKind.Player,
+    assets.tile`payment_hut_highlight`
+    )
 }
 behaviors.onEnter(SpriteKind.Car, "new", function (sprite) {
     sprites.setDataNumber(sprite, "guests", randint(1, 5))
