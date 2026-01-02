@@ -39,11 +39,6 @@ function checkTilemapLocations () {
 controller.A.onEvent(ControllerButtonEvent.Released, function () {
     checkTilemapLocations()
 })
-tiles.onSpriteEnter(SpriteKind.Car, tiles.getTileLocation(11, 2), function (sprite) {
-    timer.after(500, function () {
-        behaviors.setState(sprite, "waiting_to_pay")
-    })
-})
 behaviors.onEnter(SpriteKind.Car, "waiting_to_pay", function (sprite) {
     if (sprites.readDataNumber(sprite, "money") >= model_entranceFee) {
         sprites.changeDataNumberBy(sprite, "money", model_entranceFee * -1)
