@@ -161,6 +161,8 @@ function setupPlayer () {
         . . . . . . . . . f f f . . . . 
         `
     )
+    controller.moveSprite(s_player)
+    scene.cameraFollowSprite(s_player)
 }
 behaviors.onEnter(SpriteKind.Guest, "new", function (sprite) {
     direction = randint(-1, 1)
@@ -170,12 +172,12 @@ behaviors.onEnter(SpriteKind.Guest, "new", function (sprite) {
     behaviors.setState(sprite, "moving")
 })
 function setup () {
+    setupModel()
     setupTilemap()
     setupMapLocations()
     setupEntranceBooth()
-    setupUI()
     setupPlayer()
-    setupModel()
+    setupUI()
 }
 behaviors.onEnter(SpriteKind.Guest, "moving", function (sprite) {
     sprites.setDataNumber(sprite, "moving", randint(400, 500))
