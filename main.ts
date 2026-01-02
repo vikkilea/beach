@@ -38,8 +38,7 @@ controller.A.onEvent(ControllerButtonEvent.Released, function () {
 behaviors.onEnter(SpriteKind.Car, "waiting_to_pay", function (sprite) {
     if (sprites.readDataNumber(sprite, "money") >= model_entranceFee) {
         sprites.changeDataNumberBy(sprite, "money", model_entranceFee * -1)
-        model_playermoney += model_entranceFee
-        ui.updateValue(ui_money, convertToText(model_playermoney))
+        ui.updateValue(ui_money, "")
     }
 })
 function setupTilemap () {
