@@ -39,6 +39,11 @@ function checkTilemapLocations () {
 controller.A.onEvent(ControllerButtonEvent.Released, function () {
     checkTilemapLocations()
 })
+tiles.onSpriteEnter(SpriteKind.Car, tiles.getTileLocation(11, 2), function (sprite) {
+    timer.after(500, function () {
+        behaviors.setState(sprite, "waiting_to_pay")
+    })
+})
 behaviors.onEnter(SpriteKind.Car, "waiting_to_pay", function (sprite) {
     if (sprites.readDataNumber(sprite, "money") >= model_entranceFee) {
         sprites.changeDataNumberBy(sprite, "money", model_entranceFee * -1)
@@ -51,6 +56,7 @@ function setupTilemap () {
 function setupMapLocations () {
     tilelocation_entranceBooth = tiles.getTileLocation(12, 2)
     tilelocations_carspawnpoint = tiles.getTileLocation(11, 0)
+    tilelocations_carwaittopay = tiles.getTileLocation(11, 1)
 }
 function setupPlayer () {
     s_player = sprites.create(img`
@@ -203,8 +209,7 @@ behaviors.onEnter(SpriteKind.Car, "new", function (sprite) {
     sprites.setDataNumber(sprite, "guests", randint(1, 5))
     sprites.setDataNumber(sprite, "money", randint(50, 100))
     tiles.teleportToTile(sprite, tilelocations_carspawnpoint)
-    tiles.moveSpriteToTile(sprite, tiles.getTileLocation(11, 1), 4)
-    behaviors.setState(sprite, "waiting_to_pay")
+    tiles.moveSpriteToTile(sprite, tilelocations_carwaittopay, 4)
 })
 behaviors.onUpdate(SpriteKind.Car, "new", function (sprite) {
     if (true) {
@@ -393,6 +398,7 @@ let new_guest: Sprite = null
 let vy = 0
 let vx = 0
 let direction = 0
+let tilelocations_carwaittopay: tiles.Location = null
 let tilelocations_carspawnpoint: tiles.Location = null
 let tilelocation_entranceBooth: tiles.Location = null
 let FALSE = 0
