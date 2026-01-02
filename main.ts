@@ -27,6 +27,10 @@ function setupUI () {
     ui.Corner.TopLeft
     )
 }
+function helpers2 () {
+    TRUE = 1
+    FALSE = 0
+}
 function checkTilemapLocations () {
     if (tiles.isKindOnTile(SpriteKind.Player, tilelocation_entranceBooth)) {
         entranceBoothClicked()
@@ -172,12 +176,12 @@ behaviors.onEnter(SpriteKind.Guest, "new", function (sprite) {
     behaviors.setState(sprite, "moving")
 })
 function setup () {
+    setupModel()
     setupUI()
     setupTilemap()
     setupMapLocations()
     setupEntranceBooth()
     setupPlayer()
-    setupModel()
 }
 behaviors.onEnter(SpriteKind.Guest, "moving", function (sprite) {
     sprites.setDataNumber(sprite, "moving", randint(400, 500))
@@ -194,10 +198,6 @@ function setupEntranceBooth () {
 function setupModel () {
     model_entranceFee = 10
     model_playermoney = observables.createObservableNumber(0)
-}
-function helpers2 () {
-    TRUE = 1
-    FALSE = 0
 }
 behaviors.onEnter(SpriteKind.Car, "new", function (sprite) {
     sprites.setDataNumber(sprite, "guests", randint(1, 5))
@@ -390,13 +390,13 @@ function spawnNewCar () {
 }
 let new_car: Sprite = null
 let new_guest: Sprite = null
-let FALSE = 0
-let TRUE = 0
 let vy = 0
 let vx = 0
 let direction = 0
 let tilelocations_carspawnpoint: tiles.Location = null
 let tilelocation_entranceBooth: tiles.Location = null
+let FALSE = 0
+let TRUE = 0
 let model_playermoney: observables.ObservableValue = null
 let s_player: Sprite = null
 let model_entranceFee = 0
