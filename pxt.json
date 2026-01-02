@@ -6,7 +6,7 @@
         "arcade-story": "github:microsoft/arcade-storytelling#v1.0.3",
         "arcade-tile-util": "github:microsoft/arcade-tile-util#v1.2.0",
         "arcade-sprite-data": "github:microsoft/arcade-sprite-data#v0.2.1",
-        "makecode-extension": "github:vikkilea/makecode-extension#981d9c8bd8a42000b6caa1d6c793532af95cbeac",
+        "makecode-extension": "github:vikkilea/makecode-extension#2cfb5d108ffbe59699f5c842ffd80c46b5d0801f",
         "Timers": "github:microsoft/arcade-timers#v1.1.0"
     },
     "files": [
